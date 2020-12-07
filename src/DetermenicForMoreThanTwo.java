@@ -38,14 +38,14 @@ public class DetermenicForMoreThanTwo extends Process {
     }
 
     public void study() {
-        for (Map.Entry classMatrix : matrixesOfFile.entrySet()) { //идем по всем матрицам для каждого из классов
+        for (Map.Entry classMatrix : matrixesOfFile.entrySet()) { //РёРґРµРј РїРѕ РІСЃРµРј РјР°С‚СЂРёС†Р°Рј РґР»СЏ РєР°Р¶РґРѕРіРѕ РёР· РєР»Р°СЃСЃРѕРІ
             List<Double[]> matrixForFormula = (List<Double[]>)classMatrix.getValue();
             int i = 0;
             int streak = 0;
             int iter = 0;
-             //идем по матрице
+            //РёРґРµРј РїРѕ РјР°С‚СЂРёС†Рµ
             while (streak != matrixForFormula.size()) {
-                if (koefMap.containsKey((Integer)classMatrix.getKey())) {    //если есть матрица коэффициентов для этого класса
+                if (koefMap.containsKey((Integer)classMatrix.getKey())) {    //РµСЃР»Рё РµСЃС‚СЊ РјР°С‚СЂРёС†Р° РєРѕСЌС„С„РёС†РёРµРЅС‚РѕРІ РґР»СЏ СЌС‚РѕРіРѕ РєР»Р°СЃСЃР°
                     double result = formula(matrixForFormula.get(i), (Integer)classMatrix.getKey());
                     if (result < 0) {
                         List<Double[]> koefListForClass = koefMap.get((Integer)classMatrix.getKey());
@@ -60,18 +60,18 @@ public class DetermenicForMoreThanTwo extends Process {
                     } else {
                         i++;
                     }
-                 } else {                                                    //если нету, тогда считаем что это первые коэффициенты и кладем туда
+                } else {                                                    //РµСЃР»Рё РЅРµС‚Сѓ, С‚РѕРіРґР° СЃС‡РёС‚Р°РµРј С‡С‚Рѕ СЌС‚Рѕ РїРµСЂРІС‹Рµ РєРѕСЌС„С„РёС†РёРµРЅС‚С‹ Рё РєР»Р°РґРµРј С‚СѓРґР°
                     List<Double[]> koefList = new ArrayList<>();
-                    koefList.add(matrixForFormula.get(i));  // полчаем коэффициент
-                    koefMap.put((Integer)classMatrix.getKey(), koefList);   //кладем
+                    koefList.add(matrixForFormula.get(i));  // РїРѕР»С‡Р°РµРј РєРѕСЌС„С„РёС†РёРµРЅС‚
+                    koefMap.put((Integer)classMatrix.getKey(), koefList);   //РєР»Р°РґРµРј
                     i++;
                 }
                 iter++;
             }
-            System.out.println("Обучение завершено для класса " + String.valueOf((Integer)classMatrix.getKey()) + " .Количество итераций " + iter);
+            System.out.println("РћР±СѓС‡РµРЅРёРµ Р·Р°РІРµСЂС€РµРЅРѕ РґР»СЏ РєР»Р°СЃСЃР° " + String.valueOf((Integer)classMatrix.getKey()) + " .РљРѕР»РёС‡РµСЃС‚РІРѕ РёС‚РµСЂР°С†РёР№ " + iter);
 
         }
-        System.out.println("Полное обучение завершено");
+        System.out.println("РџРѕР»РЅРѕРµ РѕР±СѓС‡РµРЅРёРµ Р·Р°РІРµСЂС€РµРЅРѕ");
     }
 
     public void work(Double[] test){
@@ -85,12 +85,12 @@ public class DetermenicForMoreThanTwo extends Process {
             }
         }
 
-        System.out.println("Входной вектор принадлежит " + maxClass + " классу");
+        System.out.println("Р’С…РѕРґРЅРѕР№ РІРµРєС‚РѕСЂ РїСЂРёРЅР°РґР»РµР¶РёС‚ " + maxClass + " РєР»Р°СЃСЃСѓ");
     }
 
     private double formula(Double[] currentLine, Integer classNumber) {
-        double result = 0; //подсчет
-        for (int i = 0; i < koefMap.get(classNumber).size(); i++) { //идем по всем коэффициентам
+        double result = 0; //РїРѕРґСЃС‡РµС‚
+        for (int i = 0; i < koefMap.get(classNumber).size(); i++) { //РёРґРµРј РїРѕ РІСЃРµРј РєРѕСЌС„С„РёС†РёРµРЅС‚Р°Рј
             double resultForLine = 0;
             for (int j = 0; j < currentLine.length; j++) {
                 resultForLine += Math.pow(currentLine[j] - koefMap.get(classNumber).get(i)[j], 2);

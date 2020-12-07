@@ -12,12 +12,12 @@ public class MainClass {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        System.out.println("Детерменированный - D : Стохастический - S");
+        System.out.println("Р”РµС‚РµСЂРјРµРЅРёСЂРѕРІР°РЅРЅС‹Р№ РІР°СЂРёР°РЅС‚ - D : РЎС‚РѕС…Р°СЃС‚РёС‡РµСЃРєРёР№ РІР°СЂРёР°РЅС‚ - S");
         Scanner in = new Scanner(System.in);
-        System.out.println("Введите букву: ");
+        System.out.println("Р’РІРµРґРёС‚Рµ Р±СѓРєРІСѓ: ");
         String enter = in.next();
-        //закомментить, если надоест вводить в клавы
-        System.out.println("Введите название файла");
+        //Р•СЃР»Рё РЅР°РґРѕРµСЃС‚ РІРІРѕРґРёС‚СЊ СЃ РєР»Р°РІС‹
+        System.out.println("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р°");
         String nameFile = in.next();
         File file = new File(nameFile);
         FileReader fileReader = new FileReader(file);
@@ -27,46 +27,33 @@ public class MainClass {
 //        File file = new File("KM2.txt");
 //        File file = new File("Mx3.txt");
 //        File file = new File("test01.txt");
-      //  System.out.println("Нажмите Q для выхода");
+        //  System.out.println("РќР°Р¶РјРёС‚Рµ Q РґР»СЏ РІС‹С…РѕРґР°");
 
 
+        Scanner scanner = new Scanner(System.in);
 
-            if (enter.equals("D") || enter.equals("d")) {
-                int howManyClasses = howManyClasses(file);
-                if (howManyClasses > 2) {
-                    DetermenicForMoreThanTwo process = new DetermenicForMoreThanTwo(file);
-                    process.study();
-                    while (true) {
-                        System.out.println("Введите вектор значения вектора");
-                        String vector = in.next();
-                        String[] stringMasVector = vector.split(" ");
-                        Double[] doubleVector = new Double[stringMasVector.length];
-                        for (int i = 0; i < doubleVector.length; i++) {
-                            doubleVector[i] = Double.parseDouble(stringMasVector[i]);
-                        }
-                        process.work(doubleVector);
-                    }
-
-                } else {
-                    DetermenicForTwo process = new DetermenicForTwo(file);
-                    process.study();
-                    while (true) {
-                        System.out.println("Введите вектор значения вектора");
-                        String vector = in.next();
-                        String[] stringMasVector = vector.split(" ");
-                        Double[] doubleVector = new Double[stringMasVector.length];
-                        for (int i = 0; i < doubleVector.length; i++) {
-                            doubleVector[i] = Double.parseDouble(stringMasVector[i]);
-                        }
-                        process.work(doubleVector);
-                    }
-                }
-            } else {
-                Stohastic process = new Stohastic(file);
+        if (enter.equals("D") || enter.equals("d")) {
+            int howManyClasses = howManyClasses(file);
+            if (howManyClasses > 2) {
+                DetermenicForMoreThanTwo process = new DetermenicForMoreThanTwo(file);
                 process.study();
                 while (true) {
-                    System.out.println("Введите вектор значения вектора");
-                    String vector = in.next();
+                    System.out.println("Р’РІРµРґРёС‚Рµ РІРµРєС‚РѕСЂ Р·РЅР°С‡РµРЅРёРµ РІРµРєС‚РѕСЂР°");
+                    String vector = scanner.nextLine();
+                    String[] stringMasVector = vector.split(" ");
+                    Double[] doubleVector = new Double[stringMasVector.length];
+                    for (int i = 0; i < doubleVector.length; i++) {
+                        doubleVector[i] = Double.parseDouble(stringMasVector[i]);
+                    }
+                    process.work(doubleVector);
+                }
+
+            } else {
+                DetermenicForTwo process = new DetermenicForTwo(file);
+                process.study();
+                while (true) {
+                    System.out.println("Р’РІРµРґРёС‚Рµ РІРµРєС‚РѕСЂ Р·РЅР°С‡РµРЅРёРµ РІРµРєС‚РѕСЂР°");
+                    String vector = scanner.nextLine();
                     String[] stringMasVector = vector.split(" ");
                     Double[] doubleVector = new Double[stringMasVector.length];
                     for (int i = 0; i < doubleVector.length; i++) {
@@ -75,6 +62,20 @@ public class MainClass {
                     process.work(doubleVector);
                 }
             }
+        } else {
+            Stohastic process = new Stohastic(file);
+            process.study();
+            while (true) {
+                System.out.println("Р’РІРµРґРёС‚Рµ РІРµРєС‚РѕСЂ Р·РЅР°С‡РµРЅРёРµ РІРµРєС‚РѕСЂР°");
+                String vector = scanner.nextLine();
+                String[] stringMasVector = vector.split(" ");
+                Double[] doubleVector = new Double[stringMasVector.length];
+                for (int i = 0; i < doubleVector.length; i++) {
+                    doubleVector[i] = Double.parseDouble(stringMasVector[i]);
+                }
+                process.work(doubleVector);
+            }
+        }
 
 
     }
@@ -84,8 +85,8 @@ public class MainClass {
         FileReader fileReader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         bufferedReader.lines().forEach(line -> {
-            if (!listClass.containsKey(line.substring(0,1))){
-                listClass.put(line.substring(0,1), line.substring(0,1));
+            if (!listClass.containsKey(line.substring(0, 1))) {
+                listClass.put(line.substring(0, 1), line.substring(0, 1));
             }
         });
         return listClass.entrySet().size();

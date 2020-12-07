@@ -7,7 +7,7 @@ import java.util.List;
 
 public class DetermenicForTwo extends Process {
 
-    private static List<Double[]> matrixForFormula = new ArrayList<>(); //матрица в которой хранятся значения, используемые в формуле
+    private static List<Double[]> matrixForFormula = new ArrayList<>(); //РјР°С‚СЂРёС†Р° РІ РєРѕС‚РѕСЂРѕР№ С…СЂР°РЅСЏС‚СЃСЏ Р·РЅР°С‡РµРЅРёСЏ, РёСЃРїРѕР»СЊР·СѓРµРјС‹Рµ РІ С„РѕСЂРјСѓР»Рµ
     private static List<Integer> classesList = new ArrayList<>();
 
     private static List<Double[]> koefList = new ArrayList<>();
@@ -58,24 +58,24 @@ public class DetermenicForTwo extends Process {
             }
             iter++;
         }
-        System.out.println("Обучение завершено!!! Количество итераций: " + iter);
+        System.out.println("РћР±СѓС‡РµРЅРёРµ Р·Р°РІРµСЂС€РµРЅРѕ!!! РљРѕР»РёС‡РµСЃС‚РІРѕ РёС‚РµСЂР°С†РёР№: " + iter);
     }
 
     public void work(Double[] test){
         if (test.length != matrixForFormula.get(0).length){
-            throw new IllegalArgumentException("Неправильная размерность входного массива");
+            throw new IllegalArgumentException("РќРµРїСЂР°РІРёР»СЊРЅР°СЏ СЂР°Р·РјРµСЂРЅРѕСЃС‚СЊ РІС…РѕРґРЅРѕРіРѕ РјР°СЃСЃРёРІР°");
         } else {
             if (formula(test) > 0) {
-                System.out.println("Принадлежит первому классу");
+                System.out.println("РџСЂРёРЅР°РґР»РµР¶РёС‚ РїРµСЂРІРѕРјСѓ РєР»Р°СЃСЃСѓ");
             } else  {
-                System.out.println("Принадлежит второму классу");
+                System.out.println("РџСЂРёРЅР°РґР»РµР¶РёС‚ РІС‚РѕСЂРѕРјСѓ РєР»Р°СЃСЃСѓ");
             }
         }
     }
 
     private static double formula(Double[] currentLine) {
-        double result = 0; //подсчет
-        for (int i = 0; i < koefList.size(); i++) { //идем по всем коэффициентам
+        double result = 0; //РїРѕРґСЃС‡С‘С‚
+        for (int i = 0; i < koefList.size(); i++) { //РёРґРµРј РїРѕ РІСЃРµРј РєРѕСЌС„С„РёС†РёРµРЅС‚Р°Рј
             double resultForLine = 0;
             for (int j = 0; j < currentLine.length; j++) {
                 resultForLine += Math.pow(currentLine[j] - koefList.get(i)[j], 2);
@@ -84,5 +84,7 @@ public class DetermenicForTwo extends Process {
         }
         return result;
     }
+
+
 
 }
